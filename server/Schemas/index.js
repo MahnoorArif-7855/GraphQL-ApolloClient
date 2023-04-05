@@ -1,4 +1,5 @@
 const graphql = require("graphql");
+
 const {
   GraphQLObjectType,
   GraphQLSchema,
@@ -17,7 +18,8 @@ const RootQuery = new GraphQLObjectType({
       type: new GraphQLList(UserType),
       args: { id: { type: GraphQLInt } },
       resolve(parent, args) {
-        return userData;
+        // console.log("args", args);
+        return args;
       },
     },
   },
@@ -30,17 +32,21 @@ const Mutation = new GraphQLObjectType({
       type: UserType,
       args: {
         firstName: { type: GraphQLString },
-        lastName: { type: GraphQLString },
-        email: { type: GraphQLString },
-        password: { type: GraphQLString },
+        occupation: { type: GraphQLString },
+        // lastName: { type: GraphQLString },
+        // email: { type: GraphQLString },
+        // password: { type: GraphQLString },
       },
       resolve(parent, args) {
+        console.log("UserType", UserType);
+        console.log("args", args);
         userData.push({
           id: userData.length + 1,
           firstName: args.firstName,
-          lastName: args.lastName,
-          email: args.email,
-          password: args.password,
+          occupation: args.occupation,
+          // lastName: args.lastName,
+          // email: args.email,
+          // password: args.password,
         });
         return args;
       },
