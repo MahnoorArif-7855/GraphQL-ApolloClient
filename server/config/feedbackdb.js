@@ -13,13 +13,10 @@ let conn;
 try {
   conn = client.connect();
 
-  // listDatabases(client);
-  // Make the appropriate DB calls
-  var db = client.db("users");
-  // var dbfeedback = client.db("Feedback");
+  var feedbackdb = client.db("Feedback");
+
 } catch (e) {
   console.error(e);
 }
 
-module.exports = db;
-// module.exports = dbfeedback;
+module.exports = feedbackdb;
